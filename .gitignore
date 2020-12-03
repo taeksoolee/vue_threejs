@@ -1,0 +1,6 @@
+.vscode/
+
+threejs/docs/
+threejs/editor/
+threejs/files/
+threejs/.*
