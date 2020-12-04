@@ -1,24 +1,43 @@
 const FBXModel = {
-  props: ["share", "loader", "path", "file", "isActionModel"],
-  mounted: function () {
+  name: "fbx-model",
+  props: ["share", "path", "file", "isActionModel"],
+  mounted: async function () {
     const scene = this.share.scene;
-    this.loader.load(this.path + this.file, function (object) {
-      console.log(object);
-      if (this.isActionModel) {
-        const mixer = new THREE.AnimationMixer(object);
-        const action = mixer.clipAction(object.animations[0]);
-        action.play();
-      }
+    const that = this;
 
-      object.traverse(function (child) {
-        if (child.isMesh) {
-          child.castShadow = true;
-          child.receiveShadow = true;
-        }
+    function getObj() {
+      return new Promise(function (resolve, reject) {
+        that.loader.load(that.path + that.file, function (object) {
+          resolve(object);
+        });
       });
+    }
 
-      console.log(scene);
-      scene.add(object);
+    const object = await getObj();
+    console.log(object);
+    if (this.isActionModel) {
+      const mixer = new THREE.AnimationMixer(object);
+      const action = mixer.clipAction(object.animations[0]);
+      action.play();
+
+      that.mixers.push(mixer);
+    }
+
+    object.traverse(function (child) {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
     });
+
+    scene.add(object);
+    that.models.push(object);
+  },
+  computed: {
+    ...Vuex.mapState({
+      loader: "fbxLoader",
+      models: "models",
+      mixers: "mixers",
+    }),
   },
 };

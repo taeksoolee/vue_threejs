@@ -1,8 +1,10 @@
 const Scene = {
   name: "Scene",
   template: `
-    <div>
-      <slot v-bind:scene="scene"></slot>
+    <div style="width: 100%; height: 100%;">
+      <slot 
+        v-bind:scene="scene"
+      ></slot>
     </div>
   `,
   data: function () {
@@ -11,6 +13,6 @@ const Scene = {
     };
   },
   mounted() {
-    this.scene.background = new THREE.Color(0xa0a0a0);
+    this.scene.background = new THREE.Color(0x000000);
   },
 };

@@ -1,7 +1,6 @@
 const DirectionalLight = {
   name: "DirectionalLight",
   props: ["share"],
-  template: `<div></div>`,
   mounted() {
     const directionalLight = new THREE.DirectionalLight(0xffffff);
     directionalLight.position.set(0, 200, 100);
