@@ -1,0 +1,26 @@
+{
+  "name": "threejs_vue_components",
+  "version": "1.0.0",
+  "description": "> threejs 자주쓰는 기능 함수로 정의",
+  "main": "three.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taeksoolee/vue_threejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/taeksoolee/vue_threejs/issues"
+  },
+  "homepage": "https://github.com/taeksoolee/vue_threejs#readme",
+  "dependencies": {
+    "three": "^0.123.0",
+    "three-fbx-loader": "^1.0.3",
+    "three-orbitcontrols": "^2.110.3",
+    "vue": "^2.6.12",
+    "vuex": "^3.6.0"
+  }
+}
